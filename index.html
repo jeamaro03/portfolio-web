@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeferson Amaro | Software Developer</title>
+    
+    <style>
+        /* ESTILIZAÇÃO CSS (Requisito: CSS3 Puro)
+           Definição de variáveis e layout responsivo com Flexbox/Grid.
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+        :root {
+            --primary: #10b981;
+            --bg-body: #0a0f1a;
+            --bg-card: #161e2d;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Canvas do Efeito Matrix */
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            display: none;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Menu de Navegação */
+        header {
+            background: rgba(10, 15, 26, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav { height: 80px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.4rem; }
+        .logo span { color: var(--primary); }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 30px; }
+        nav ul li a { text-decoration: none; color: var(--text-main); transition: 0.3s; font-weight: 500; }
+        nav ul li a:hover { color: var(--primary); }
+
+        /* Seção Hero (Impacto Inicial) */
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent);
+        }
+        .hero-content h1 { font-family: 'Poppins', sans-serif; font-size: 3.5rem; margin: 10px 0; }
+        .greeting { color: var(--primary); font-weight: 600; letter-spacing: 2px; }
+        .btn-primary { 
+            background: var(--primary); color: #000; padding: 15px 35px; 
+            border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3); }
+
+        /* Seções e Cards */
+        section { padding: 100px 0; }
+        .section-title { font-family: 'Poppins', sans-serif; font-size: 2rem; margin-bottom: 40px; text-align: center; color: var(--primary); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--bg-card); padding: 30px; border-radius: 15px; border: 1px solid var(--border); transition: 0.3s; }
+        .card-hover:hover { border-color: var(--primary); transform: translateY(-5px); }
+
+        .badge { background: rgba(16, 185, 129, 0.1); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-right: 5px; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border); color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <canvas id="matrixCanvas"></canvas>
+
+    <header>
+        <nav class="container">
+            <div class="logo">JEFERSON<span>AMARO</span></div>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#formacao">Formação</a></li>
+                <li><a href="#portfolio">Portfólio</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container hero-content">
+                <span class="greeting">Desenvolvedor Back-end</span>
+                <h1>Jeferson Amaro</h1>
+                <p style="font-size: 1.2rem; margin-bottom: 25px; color: var(--text-muted);">Ciência da Computação | UNINTER</p>
+                <a href="#portfolio" class="btn-primary">Ver Projetos</a>
+            </div>
+        </section>
+
+        <section id="sobre" class="container">
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="card">
+                <p>Sou estudante de Ciência da Computação na UNINTER, atualmente no segundo ano, com foco total no desenvolvimento Back-end. Minha trajetória profissional começou em áreas de atendimento ao cliente e mercado imobiliário, o que me proporcionou uma base sólida em comunicação, negociação e resolução de conflitos. Hoje, canalizo essa experiência para a tecnologia, utilizando linguagens como Python, Node.js e SQL para construir soluções eficientes e escaláveis. Sou movido por desafios técnicos e estou em constante busca por evolução, visando uma carreira internacional no desenvolvimento de software.</p>
+            </div>
+        </section>
+
+        <section id="formacao" class="container">
+            <h2 class="section-title">Formação e Qualificações</h2>
+            <div class="grid">
+                <div class="card card-hover">
+                    <span class="date">2024 - 2028</span>
+                    <h3>Bacharelado em Ciência da Computação</h3>
+                    <p><strong>UNINTER</strong> - Centro Universitário Internacional</p>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: var(--text-muted);">Foco em fundamentos de computação e lógica. Atualmente no 2º ano.</p>
+                    <div class="status" style="margin-top:10px;">Cursando</div>
+                </div>
+
+                <div class="card card-hover">
+                    <span class="date">Bootcamps & Imersões</span>
+                    <h3>Desenvolvimento Back-end</h3>
+                    <p><strong>Digital Innovation One (DIO)</strong></p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="badge">Python</span>
+                        <span class="badge">Machine Learning</span>
+                        <span class="badge">SQL</span>
+                    </div>
+                </div>
+
+                <div class="card card-hover">
+                    <span class="date">Internacionalização</span>
+                    <h3>Inglês Intermediário</h3>
+                    <p>Nível B1 (Independente)</p>
+                    <div class="status" style="margin-top:10px;">Em evolução</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
+            <h2 class="section-title">Projetos em Destaque</h2>
+            <div class="grid">
+                <div class="card card-hover">
+                    <h3>NotebookLM Acceleration Lab</h3>
+                    <p>Utilização do Google NotebookLM para acelerar processos de aprendizagem técnica.</p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="badge">IA Generativa</span>
+                        <span class="badge">Documentação</span>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.85rem;"><a href="https://github.com/JeAmaro03" target="_blank" style="color: var(--primary); text-decoration: none;">Ver no GitHub →</a></p>
+                </div>
+
+                <div class="card card-hover">
+                    <h3>The Farmer Was Replaced</h3>
+                    <p>Scripts em Python para automação de lógica e otimização de tarefas dentro do jogo.</p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="badge">Python</span>
+                        <span class="badge">Lógica</span>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.85rem;"><a href="https://github.com/JeAmaro03" target="_blank" style="color: var(--primary); text-decoration: none;">Ver no GitHub →</a></p>
+                </div>
+
+                <div class="card card-hover">
+                    <h3>Desafios de Código - DIO</h3>
+                    <p>Repositório com desafios práticos de bootcamps e resolução de problemas Back-end.</p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="badge">Node.js</span>
+                        <span class="badge">Back-end</span>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.85rem;"><a href="https://github.com/JeAmaro03" target="_blank" style="color: var(--primary); text-decoration: none;">Ver no GitHub →</a></p>
+                </div>
+
+                <div class="card card-hover">
+                    <h3>Modelagem de Banco de Dados</h3>
+                    <p>Projetos focados em estruturação de bancos relacionais e consultas SQL.</p>
+                    <div class="tech-stack" style="margin-top: 15px;">
+                        <span class="badge">SQL</span>
+                        <span class="badge">PostgreSQL</span>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 0.85rem;"><a href="https://github.com/JeAmaro03" target="_blank" style="color: var(--primary); text-decoration: none;">Ver no GitHub →</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="container">
+            <h2 class="section-title">Contato</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Canais Diretos</h3>
+                    <div class="contatos-links" style="margin-top: 20px;">
+                        <p><strong>E-mail:</strong><br><a href="mailto:je.santana123@hotmail.com" style="color: var(--primary); text-decoration: none;">je.santana123@hotmail.com</a></p>
+                        <br>
+                        <p><strong>LinkedIn:</strong><br><a href="https://www.linkedin.com/in/jefersonamaro/" target="_blank" style="color: var(--primary); text-decoration: none;">linkedin.com/in/jefersonamaro</a></p>
+                        <br>
+                        <p><strong>GitHub:</strong><br><a href="https://github.com/JeAmaro03" target="_blank" style="color: var(--primary); text-decoration: none;">github.com/JeAmaro03</a></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <form id="formContato">
+                        <input type="text" id="nome" placeholder="Nome Completo" required style="width: 100%; padding: 12px; background: #0a0f1a; border: 1px solid var(--border); border-radius: 8px; color: white; margin-bottom: 15px;">
+                        <input type="email" id="email" placeholder="E-mail" required style="width: 100%; padding: 12px; background: #0a0f1a; border: 1px solid var(--border); border-radius: 8px; color: white; margin-bottom: 15px;">
+                        <textarea id="mensagem" rows="4" placeholder="Sua Mensagem" required style="width: 100%; padding: 12px; background: #0a0f1a; border: 1px solid var(--border); border-radius: 8px; color: white; margin-bottom: 15px;"></textarea>
+                        <button type="submit" style="width: 100%; padding: 15px; background: var(--primary); border: none; font-weight: bold; cursor: pointer; border-radius: 8px;">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Jeferson Amaro - UNINTER</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const characters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>[]{}/?#$@";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(10, 15, 26, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#10b981";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+
+        function triggerMatrixEffect() {
+            canvas.style.display = 'block';
+            const interval = setInterval(drawMatrix, 35);
+            setTimeout(() => {
+                clearInterval(interval);
+                canvas.style.display = 'none';
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }, 2000);
+        }
+
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', triggerMatrixEffect);
+        });
+
+        document.getElementById('formContato').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            alert('Olá ' + nome + ', sua mensagem foi enviada com sucesso!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
